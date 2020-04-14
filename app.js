@@ -38,5 +38,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+//custom middleware
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
+});
+
+//setup routes
+app.use('/', indexRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/users', userRoutes);
+app.use('/campgrounds/:id/comments', commentRoutes);
+app.use('/campgrounds/:id/ratings', ratingRoutes);
+
 //Server
 app.listen(3000, () => console.log('server has started!!!'));
