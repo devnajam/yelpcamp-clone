@@ -1,0 +1,41 @@
+{
+  "name": "yelpcamp_clone",
+  "version": "1.0.0",
+  "description": "This is a yelpcamp clone that i made from the version of yelpcamp sites that i like",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Najam Iftikhar",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.656.0",
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "express-sanitizer": "^1.0.5",
+    "express-session": "^1.17.0",
+    "faker": "^4.1.0",
+    "indicative": "^7.4.4",
+    "ipapi.co": "^0.3.0",
+    "iplocation": "^7.0.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "node-googleplaces": "^0.1.2",
+    "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.2",
+    "sanitize-html": "^1.23.0"
+  }
+}
