@@ -77,5 +77,94 @@ middlewareObj.validateForm = (req, res, next) => {
     let numberOfLineBreaks = (req.body.desc.match(/\n/g) || []).length;
     maxDescLength = MAX_DESC_LENGTH + numberOfLineBreaks;
   }
-  //CONTINUE HERE
+  let descriptionRule =
+    'required|min:' + MIN_DESC_LENGTH + '|max:' + maxDescLength;
+  let basicRule = 'required|max:' + MAX_INPUT_LENGTH;
+  const messages = {
+    'campName.required': 'Campground Name: required.',
+    'location.required': 'Location: required',
+    'desc.required': 'Description: required',
+    'campName.max': 'Campground Name: Maximum number of characters exceeded',
+    'location.max': 'Location: Maximum number of characters exceeded.',
+    'desc.max': 'Description: Maximum number of characters exceeded',
+    'desc.min': 'Description: Minimum number of characters not met',
+  };
+  const rules = {
+    campName: basicRule,
+    location: basicRule,
+    desc: descriptionRule,
+  };
+  const data = {
+    campName: req.body.campName,
+    location: req.body.location,
+    desc: req.body.desc,
+  };
+  validate(data, rules, messages, req, res, next);
 };
+
+middlewareObj.validateRegistrationForm = (req, res, next) => {
+  trim(req);
+  const rules = {
+    username: 'required',
+    email: 'required|email',
+    password: 'required|min:8',
+  };
+  const messages = {
+    'username.required': 'You must enter a username',
+    'email.required': 'you must enter an email address',
+    'email.email': 'The email you entered in invalid',
+    'password.required': 'you must enter a password',
+    'password.min': 'choose a password that is atleast 8 characters long',
+  };
+  const data = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  validate(data, rules, messages, req, res, next);
+};
+
+middlewareObj.validateLoginForm = (req, res, next) => {
+  trim(req);
+  const rules = {
+    email: 'required|email',
+    password: 'required'
+  }
+  const messages = {
+    'email.required': 'You must enter an email address',
+    'email.email': 'The email address you entered in invalid',
+    'password.required': 'You must enter a password'
+  }
+  const data = {
+    email = req.body.email,
+    password = req.body.password
+  }
+  validate(data, rules, messages, req, res, next)
+};
+
+function validate(data, rules, messages, req, res, next){
+  indicative.validateAll(data, rules, messages).then(function(){return next()}).catch(function(errors){
+    var validationErrors = getValidationErrors(errors)
+    req.flash('errors', validationErrors)
+    res.redirect('back')
+  })
+}
+
+function trim(req){
+  for(let key in req.body){
+    req.body[key] = req.body[key].trim()
+    if(req.body[key] == ''){
+      req.body[key] = null
+    }
+  }
+}
+
+function getValidationErrors(errors){
+  let messages = []
+  errors.forEach((msgObject)=>{
+    messages.push(msgObject.message)
+  })
+  return messages;
+}
+
+module.exports = middlewareObj
