@@ -36,6 +36,6 @@
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "request-promise": "^4.2.5",
-    "sanitize-html": "^1.23.0"
+    "sanitize-html": "^2.3.2"
   }
 }
