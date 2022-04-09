@@ -23,7 +23,7 @@
     "ipapi.co": "^0.3.0",
     "iplocation": "^7.0.0",
     "method-override": "^3.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.28",
     "mongoose": "^5.9.9",
     "morgan": "^1.10.0",
